@@ -52,6 +52,7 @@ steps:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'playground'
     azureResourceGroup: 'my-kubernetes'
+    kubernetesCluster: 'kube-testing'
     command: 'apply'
     configuration: 'hello-world-deployment.yml'
     secretType: 'dockerRegistry'
