@@ -46,14 +46,17 @@ steps:
   displayName: 'Running command'
   inputs:
     script: 'echo "Hello world"'
-
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: 'playground'
     azureResourceGroup: 'my-kubernetes'
     kubernetesCluster: 'kube-testing'
+    namespace: 'default'
     command: 'apply'
-    configuration: 'hello-world-deployment.yml'
+    arguments: '-f hello-world-deployment.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
+    azureSubscriptionEndpointForSecrets: 'playground'
+    azureContainerRegistry: 'vnguyen.azurecr.io'
+    outputFormat: 'yaml'
