@@ -20,12 +20,12 @@ steps:
 - task: Docker@1
   displayName: 'Containerize the application'
   inputs:
-   azureSubscriptionEndpoint: $(serviceConnection)
-   azureContainerRegistry: $(containerRegistry)
-   dockerFile: '**/Dockerfile'
-   imageName: '$(fullImageName)'
-   includeLatestTag: true
-
+    azureSubscriptionEndpoint: $(serviceConnection)
+    azureContainerRegistry: $(containerRegistry)
+    dockerFile: '**/Dockerfile'
+    imageName: '$(fullImageName)'
+    includeLatestTag: true
+ 
 - task: Docker@1
   displayName: 'Push image'
   inputs:
@@ -33,7 +33,7 @@ steps:
     azureContainerRegistry: $(containerRegistry)
     command: 'Push an image'
     imageName: '$(fullImageName)'
-
+ 
 - task: Docker@1
   displayName: 'Push latest image'
   inputs:
@@ -41,11 +41,3 @@ steps:
     azureContainerRegistry: $(containerRegistry)
     command: 'Push an image'
     imageName: '$(imageName):latest'
-
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
