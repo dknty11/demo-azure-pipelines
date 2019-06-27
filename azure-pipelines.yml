@@ -17,14 +17,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Docker@1
-  displayName: 'Containerize the application'
-  inputs:
-    azureSubscriptionEndpoint: $(serviceConnection)
-    azureContainerRegistry: $(containerRegistry)
-    dockerFile: '**/Dockerfile'
-    imageName: '$(fullImageName)'
-    includeLatestTag: true
+# - task: Docker@1
+#   displayName: 'Containerize the application'
+#   inputs:
+#     azureSubscriptionEndpoint: $(serviceConnection)
+#     azureContainerRegistry: $(containerRegistry)
+#     dockerFile: '**/Dockerfile'
+#     imageName: '$(fullImageName)'
+#     includeLatestTag: true
  
 # - task: Docker@1
 #   displayName: 'Push image'
