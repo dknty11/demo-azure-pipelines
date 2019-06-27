@@ -41,3 +41,8 @@ steps:
     azureContainerRegistry: $(containerRegistry)
     command: 'Push an image'
     imageName: '$(imageName):latest'
+
+- task: CmdLine@2
+  displayName: 'Running command'
+  inputs:
+    script: 'kubectl apply -f hello-world-deployment.yml'
