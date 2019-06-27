@@ -1,0 +1,51 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+variables:
+  imageName: 'dotnetcore-angular-sample'
+  imageTag: '$(build.buildId)'
+  fullImageName: '$(imageName):$(imageTag)'
+  containerRegistry: 'vnguyen.azurecr.io'
+  serviceConnection: 'playground'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Docker@1
+  displayName: 'Containerize the application'
+  inputs:
+   azureSubscriptionEndpoint: $(serviceConnection)
+   azureContainerRegistry: $(containerRegistry)
+   dockerFile: '**/Dockerfile'
+   imageName: '$(fullImageName)'
+   includeLatestTag: true
+
+- task: Docker@1
+  displayName: 'Push image'
+  inputs:
+    azureSubscriptionEndpoint: $(serviceConnection)
+    azureContainerRegistry: $(containerRegistry)
+    command: 'Push an image'
+    imageName: '$(fullImageName)'
+
+- task: Docker@1
+  displayName: 'Push latest image'
+  inputs:
+    azureSubscriptionEndpoint: $(serviceConnection)
+    azureContainerRegistry: $(containerRegistry)
+    command: 'Push an image'
+    imageName: '$(imageName):latest'
+
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
