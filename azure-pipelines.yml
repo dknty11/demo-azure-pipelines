@@ -26,26 +26,26 @@ steps:
     imageName: '$(fullImageName)'
     includeLatestTag: true
  
-- task: Docker@1
-  displayName: 'Push image'
-  inputs:
-    azureSubscriptionEndpoint: $(serviceConnection)
-    azureContainerRegistry: $(containerRegistry)
-    command: 'Push an image'
-    imageName: '$(fullImageName)'
+# - task: Docker@1
+#   displayName: 'Push image'
+#   inputs:
+#     azureSubscriptionEndpoint: $(serviceConnection)
+#     azureContainerRegistry: $(containerRegistry)
+#     command: 'Push an image'
+#     imageName: '$(fullImageName)'
  
-- task: Docker@1
-  displayName: 'Push latest image'
-  inputs:
-    azureSubscriptionEndpoint: $(serviceConnection)
-    azureContainerRegistry: $(containerRegistry)
-    command: 'Push an image'
-    imageName: '$(imageName):latest'
+# - task: Docker@1
+#   displayName: 'Push latest image'
+#   inputs:
+#     azureSubscriptionEndpoint: $(serviceConnection)
+#     azureContainerRegistry: $(containerRegistry)
+#     command: 'Push an image'
+#     imageName: '$(imageName):latest'
 
-- task: CmdLine@2
-  displayName: 'Running command'
-  inputs:
-    script: 'echo "Hello world"'
+# - task: CmdLine@2
+#   displayName: 'Running command'
+#   inputs:
+#     script: 'echo "Hello world"'
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
